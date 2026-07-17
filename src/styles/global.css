@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+    --color-accent: oklch(0.7121 0.2689 280.59);
+    --color-border: #333;
+}
+
+@keyframes scan-loop {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(14px, -8px); }
+    50% { transform: translate(2px, 10px); }
+    75% { transform: translate(-12px, -4px); }
+}
+
+@keyframes draw-path {
+    0% { stroke-dashoffset: 440; }
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes dot-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 1; }
+}
+
+@keyframes block-rise {
+    0%, 100% { transform: translateY(20px); opacity: 0; }
+    35%, 65% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rocket-launch {
+    0% { transform: translateY(16px); opacity: 0; }
+    15% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-46px); opacity: 0; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.9; }
+}

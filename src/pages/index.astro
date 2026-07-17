@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WaveArcs from '../components/WaveArcs.tsx';
+import Navbar from '../components/Navbar.tsx';
+import Process from '../components/Process.tsx';
+import SpecularButton from '../components/SpecularButton.tsx';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const services = [
+	{
+		title: "Web Design",
+		description: "Clean, modern interfaces crafted to reflect your brand and turn visitors into customers.",
+		icon: `<rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line>`,
+	},
+	{
+		title: "Web Development",
+		description: "Fast, scalable sites and apps built with modern frameworks and best practices.",
+		icon: `<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>`,
+	},
+	{
+		title: "E-Commerce",
+		description: "Custom online stores that make browsing, checkout, and growth effortless.",
+		icon: `<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path>`,
+	},
+	{
+		title: "SEO & Performance",
+		description: "Optimized for speed and search, so the right people find you and stay.",
+		icon: `<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline>`,
+	},
+];
+
+const process = [
+	{
+		title: "Discover",
+		description: "A short call to understand your goals, audience, and scope before anything is built.",
+	},
+	{
+		title: "Design",
+		description: "Wireframes and visual design tailored to your brand, reviewed together at each step.",
+	},
+	{
+		title: "Build",
+		description: "Development in modern frameworks, tested across devices and browsers as we go.",
+	},
+	{
+		title: "Launch",
+		description: "We ship, monitor, and hand off — with support available after launch.",
+	},
+];
+
+const pricing = [
+	{
+		name: "Starter",
+		description: "A focused single-page site to get you online fast.",
+		price: "$1,200",
+		period: " one-time",
+		features: ["Up to 5 sections", "Mobile responsive design", "Basic SEO setup", "2 rounds of revisions"],
+		cta: "Get started",
+		featured: false,
+	},
+	{
+		name: "Growth",
+		description: "A full multi-page site built to convert and scale.",
+		price: "$3,500",
+		period: " one-time",
+		features: [
+			"Up to 10 pages",
+			"Custom design system",
+			"CMS integration",
+			"Advanced SEO & analytics",
+			"4 rounds of revisions",
+		],
+		cta: "Get started",
+		featured: true,
+	},
+	{
+		name: "Custom",
+		description: "Tailored builds for e-commerce, apps, or complex products.",
+		price: "Let's talk",
+		period: "",
+		features: [
+			"Everything in Growth",
+			"E-commerce or web app",
+			"API & third-party integrations",
+			"Ongoing support available",
+		],
+		cta: "Contact us",
+		featured: false,
+	},
+];
+
+const clients = ["Northwind", "Vantage", "Halo Labs", "Ferra", "Solstice", "Kepler"];
+---
+
+<Layout>
+	<Navbar client:load />
+	<main class="w-full flex flex-col items-center">
+		<div class="w-full max-w-384 border-x border-border divide-y divide-border">
+		<section id="home" class="relative w-full h-screen">
+			<WaveArcs client:load />
+			<div class="absolute bottom-0 inset-x-0 border-t border-border bg-black/40 backdrop-blur-sm px-6 py-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+				<span class="text-xs text-gray-500 uppercase tracking-widest">Trusted by teams at</span>
+				{clients.map((client) => (
+					<span class="text-sm text-white/40 uppercase tracking-wide">{client}</span>
+				))}
+			</div>
+		</section>
+		<section id="services" class="w-full h-auto flex flex-col items-center justify-center gap-16 px-10 py-28">
+			<div class="flex flex-col items-center gap-4 text-center max-w-xl">
+				<h2 class="text-3xl">Services</h2>
+				<p class="text-sm text-gray-400">
+					We design and build fast, reliable web experiences — from the first pixel to production,
+					and everything that keeps it running after launch.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-14 w-full max-w-352">
+				{services.map((service) => (
+					<div class="flex items-start gap-8">
+						<div class="shrink-0 border border-gray-900 relative w-14 h-14 flex items-center justify-center bg-white/3">
+							<div class="group absolute inset-0 transition-transform duration-300 ease-out hover:scale-[1.15] *:duration-300 *:ease-out">
+								<span class="absolute -top-px -left-px size-2 border border-accent/30 border-b-0 border-r-0 group-hover:border-accent" />
+								<span class="absolute -top-px -right-px size-2 border border-accent/30 border-b-0 border-l-0 group-hover:border-accent" />
+								<span class="absolute -bottom-px -left-px size-2 border border-accent/30 border-t-0 border-r-0 group-hover:border-accent" />
+								<span class="absolute -bottom-px -right-px size-2 border border-accent/30 border-t-0 border-l-0 group-hover:border-accent" />
+							</div>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="text-white/80"
+								set:html={service.icon}
+							/>
+						</div>
+						<div class="flex flex-col gap-1">
+							<h3 class="text-base">{service.title}</h3>
+							<p class="text-sm text-gray-400">{service.description}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+		<!-- <Process client:load steps={process} /> -->
+		<section id="process" class="w-full h-auto flex flex-col items-center justify-center gap-16 px-10 py-28">
+			<div class="flex flex-col items-center gap-4 text-center max-w-xl">
+				<h2 class="text-3xl">Process</h2>
+				<p class="text-sm text-gray-400">
+					A straightforward process from first conversation to launch — and beyond.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-14 gap-y-16 w-full max-w-352">
+				{process.map((step, index) => (
+					<div class="flex flex-col items-start gap-4">
+						<div class="border border-gray-900 relative w-14 h-14 flex items-center justify-center bg-white/3">
+							<div class="group absolute inset-0 transition-transform duration-300 ease-out hover:scale-[1.15] *:duration-300 *:ease-out">
+								<span class="absolute -top-px -left-px size-2 border border-accent/30 border-b-0 border-r-0 group-hover:border-accent" />
+								<span class="absolute -top-px -right-px size-2 border border-accent/30 border-b-0 border-l-0 group-hover:border-accent" />
+								<span class="absolute -bottom-px -left-px size-2 border border-accent/30 border-t-0 border-r-0 group-hover:border-accent" />
+								<span class="absolute -bottom-px -right-px size-2 border border-accent/30 border-t-0 border-l-0 group-hover:border-accent" />
+							</div>
+							<code class="text-sm text-accent">{String(index + 1).padStart(2, "0")}</code>
+						</div>
+						<div class="flex flex-col gap-1">
+							<h3 class="text-base">{step.title}</h3>
+							<p class="text-sm text-gray-400">{step.description}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+		<section id="pricing" class="w-full h-auto flex flex-col items-center justify-center gap-16 px-10 py-28">
+			<div class="flex flex-col items-center gap-4 text-center max-w-xl">
+				<h2 class="text-3xl">Pricing</h2>
+				<p class="text-sm text-gray-400">
+					Simple, transparent packages. Need something different? Let's talk.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-352 items-stretch">
+				{pricing.map((plan) => (
+					<div
+						class:list={[
+							"flex flex-col gap-8 p-10 border",
+							plan.featured ? "border-accent/50 bg-accent/4" : "border-border bg-white/3",
+						]}
+					>
+						<div class="h-5">
+							{plan.featured && (
+								<span class="text-xs text-accent w-fit border border-accent/30 rounded-full px-2 py-0.5">
+									Most popular
+								</span>
+							)}
+						</div>
+						<div class="flex flex-col gap-1">
+							<h3 class="text-lg">{plan.name}</h3>
+							<p class="text-sm text-gray-400">{plan.description}</p>
+						</div>
+						<div class="text-3xl">
+							{plan.price}<span class="text-sm text-gray-400">{plan.period}</span>
+						</div>
+						<ul class="flex flex-col gap-3 grow">
+							{plan.features.map((feature) => (
+								<li class="text-sm text-gray-400 flex items-center gap-3">
+									<span class="w-1.5 h-1.5 rounded-full bg-accent shrink-0 shadow-[0_0_8px_var(--color-accent)]" />
+									{feature}
+								</li>
+							))}
+						</ul>
+						{/* <button
+							class:list={[
+								"px-4 py-2 text-xs w-full rounded-md",
+								plan.featured
+									? "bg-accent text-black hover:bg-accent/90"
+									: "border border-gray-700 hover:bg-white/5",
+							]}
+						>
+							{plan.cta}
+						</button> */}
+
+
+						<SpecularButton
+						size="sm"
+						radius={18}
+						tint="#ffffff"
+						tintOpacity={0}
+						blur={0}
+						textColor="#f5f5f5"
+						lineColor="#ffffff"
+						baseColor="#525252"
+						intensity={1}
+						shineSize={10}
+						shineFade={40}
+						thickness={1}
+						speed={0.35}
+						followMouse
+						proximity={250}
+						autoAnimate={false}
+						onClick={() => console.log('clicked')}
+						client:load
+						>
+						Get Started
+						</SpecularButton>
+					</div>
+				))}
+			</div>
+		</section>
+		</div>
+	</main>
+</Layout>

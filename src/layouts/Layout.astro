@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>0zone</title>
+	</head>
+
+	<body class="max-w-screen min-h-screen bg-black text-white">
+		<slot />
+
+		<script type="module">
+			import { gsap } from "gsap";
+
+			document.addEventListener("DOMContentLoaded", () => {
+				gsap.from("body", {
+					autoAlpha: 0,
+					duration: 0.4,
+					ease: "power2.out",
+				});
+
+				window.gsap = gsap;
+			});
+
+			console.log(gsap.version)
+		</script>
+	</body>
+</html>
